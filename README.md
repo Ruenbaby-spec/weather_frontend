@@ -1,6 +1,11 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
+# Weather App  
+[Click here to view the live app](/app/page.tsx)  
+
+## Backend  
+[API Routes](/backend/routes/api.php)  
 
 First, run the development server:
 
