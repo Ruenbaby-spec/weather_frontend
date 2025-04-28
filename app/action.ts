@@ -1,6 +1,6 @@
-"use server";
+'use server';
 
-import { z } from "zod";
+import { z } from 'zod';
 
 // Define WeatherData type from schema (optional but recommended)
 export type WeatherData = z.infer<typeof weatherSchema>;
@@ -30,7 +30,7 @@ export async function getWeatherData(city: string): Promise<{
 }> {
   try {
     if (!city.trim()) {
-      return { error: "City required!" };
+      return { error: 'City required!' };
     }
 
     const response = await fetch(
@@ -39,7 +39,7 @@ export async function getWeatherData(city: string): Promise<{
 
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
-      throw new Error(errorData.message || "City not found");
+      throw new Error(errorData.message || 'City not found');
     }
 
     const rawData = await response.json();
@@ -47,11 +47,11 @@ export async function getWeatherData(city: string): Promise<{
 
   } catch (error) {
     if (error instanceof z.ZodError) {
-      console.error("Validation error:", error.errors);
-      return { error: "Invalid weather data received" };
+      console.error('Validation error:', error.errors);
+      return { error: 'Invalid weather data received' };
     }
     return {
-      error: error instanceof Error ? error.message : "Failed to fetch weather data",
+      error: error instanceof Error ? error.message : 'Failed to fetch weather data',
     };
   }
 }

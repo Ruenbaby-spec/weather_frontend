@@ -24,6 +24,15 @@ export default [
       "@next/next/no-img-element": "warn",
       
       // TypeScript rules
+      "@typescript-eslint/no-misused-promises": [
+        "error",
+        {
+          checksVoidReturn: {
+            arguments: false,
+            attributes: false,
+          }
+        }
+      ],
       "@typescript-eslint/no-unused-vars": [
         "warn",
         { 
@@ -32,16 +41,16 @@ export default [
           caughtErrorsIgnorePattern: "^_"
         }
       ],
-      "@typescript-eslint/no-unsafe-assignment": "off",
+      "@typescript-eslint/no-unsafe-assignment": "warn",
       "@typescript-eslint/no-unsafe-member-access": "off",
-      
+      "@typescript-eslint/no-unsafe-arguments": "warn",
       // React rules
       "react/jsx-key": "error",
       "react/no-unescaped-entities": "warn",
       
       // General JavaScript rules
       "semi": ["error", "always"],
-      "quotes": ["error", "single", { "avoidEscape": true }],
+      "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
       "indent": ["error", 2]
     },
     languageOptions: {

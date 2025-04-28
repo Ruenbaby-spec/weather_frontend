@@ -1,35 +1,35 @@
-'use client'
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Droplets, Search, Thermometer, Wind } from "lucide-react";
-import { getWeatherData } from "./action";
-import { useState } from "react";
-import { WeatherData } from "./Types/weather";
-import { Card, CardContent } from "@/components/ui/card";
-import { useFormStatus } from "react-dom";
-import Image from "next/image"; // Fixed: Using Next.js Image component
+'use client';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Droplets, Search, Thermometer, Wind } from 'lucide-react';
+import { getWeatherData } from './action';
+import { useState } from 'react';
+import { WeatherData } from './Types/weather';
+import { Card, CardContent } from '@/components/ui/card';
+import { useFormStatus } from 'react-dom';
+import Image from 'next/image'; // Fixed: Using Next.js Image component
 
 function SubmitButton() {
   const { pending } = useFormStatus();
 
   return (
     <Button className="bg-black text-white" type="submit" disabled={pending}>
-      <Search className={`w-4 h-4 ${pending ? "animate-spin" : ""}`} />
+      <Search className={`w-4 h-4 ${pending ? 'animate-spin' : ''}`} />
     </Button>
   );
 }
 
 export default function Home() {
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [error, setError] = useState<string>("");
+  const [error, setError] = useState<string>('');
   
   const iconUrl = weather?.weather?.[0]?.icon 
     ? `https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png` 
     : null;
 
   const handleSearch = async (formData: FormData) => {
-    setError("");
-    const city = formData.get("city") as string;
+    setError('');
+    const city = formData.get('city') as string;
     const { data, error: weatherError } = await getWeatherData(city);
 
     if (weatherError) {
